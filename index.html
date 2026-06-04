@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>GiparStore | Pusat Nokos Original & Premium</title>
+  <!-- Google Fonts & Font Awesome CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefaf5;
+      color: #1e2a2f;
+      scroll-behavior: smooth;
+    }
+
+    /* custom warna giparstore: aksen coral & teal gelap */
+    :root {
+      --primary: #e67e22;
+      --primary-dark: #d35400;
+      --secondary: #2c3e50;
+      --accent: #f39c12;
+      --light-bg: #fff6ed;
+      --card-bg: #ffffff;
+      --text-dark: #1e272e;
+      --text-muted: #576574;
+      --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-hover: 0 25px 40px -14px rgba(0, 0, 0, 0.15);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* navbar */
+    .navbar {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+      background: rgba(255, 255, 255, 0.96);
+    }
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #e67e22, #f39c12);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--primary-dark);
+      display: block;
+      letter-spacing: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--secondary);
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .btn-wa-float {
+      background: #25D366;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+    .btn-wa-float:hover {
+      background: #128C7E;
+      transform: scale(0.97);
+      color: white;
+    }
+
+    /* hero */
+    .hero {
+      padding: 60px 0 40px 0;
+      background: linear-gradient(120deg, #fff3e8 0%, #ffe6d5 100%);
+      border-radius: 0 0 48px 48px;
+      margin-bottom: 40px;
+    }
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .hero-text h2 {
+      font-size: 2.7rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #2c3e2f;
+    }
+    .hero-text .highlight {
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      margin: 18px 0 24px;
+      color: var(--text-muted);
+      max-width: 500px;
+    }
+    .hero-badge {
+      background: white;
+      border-radius: 80px;
+      padding: 8px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    .hero-img {
+      background: rgba(230,126,34,0.1);
+      padding: 20px;
+      border-radius: 80px;
+    }
+    .hero-img i {
+      font-size: 150px;
+      color: var(--primary);
+      filter: drop-shadow(0 10px 8px rgba(0,0,0,0.1));
+    }
+
+    /* produk grid */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 48px 0 24px 0;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 40px 0 60px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .product-img {
+      background: #fde9e0;
+      text-align: center;
+      padding: 32px 16px;
+    }
+    .product-img i {
+      font-size: 80px;
+      color: var(--primary);
+    }
+    .product-info {
+      padding: 20px 20px 24px;
+    }
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .product-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: 8px 0 12px;
+      line-height: 1.4;
+    }
+    .price {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 12px 0 16px;
+    }
+    .price small {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #7f8c8d;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-wa, .btn-order {
+      flex: 1;
+      padding: 12px 0;
+      border: none;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: white;
+    }
+    .btn-wa:hover {
+      background: #128C7E;
+    }
+    .btn-order {
+      background: #2c3e50;
+      color: white;
+    }
+    .btn-order:hover {
+      background: #e67e22;
+    }
+
+    /* modal form */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-card {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 36px;
+      padding: 28px 24px;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+      animation: fadeUp 0.2s ease;
+    }
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-card h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .modal-card .modal-product-name {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .modal input, .modal textarea {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 10px 0;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      font-family: inherit;
+      background: #fefcf9;
+      transition: 0.2s;
+    }
+    .modal input:focus, .modal textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(230,126,34,0.2);
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .modal-buttons button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .submit-order {
+      background: #25D366;
+      color: white;
+    }
+    .close-modal {
+      background: #e0e0e0;
+      color: #2c3e50;
+    }
+    /* footer */
+    .footer {
+      background: #1e272e;
+      color: #cddbe9;
+      padding: 40px 0 24px;
+      margin-top: 60px;
+      border-radius: 32px 32px 0 0;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .footer p i {
+      color: var(--primary);
+    }
+    .whatsapp-link {
+      color: #25D366;
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      .nav-wrapper {
+        flex-direction: column;
+        gap: 14px;
+      }
+      .hero-text h2 {
+        font-size: 2rem;
+      }
+      .hero-img i {
+        font-size: 100px;
+      }
+    }
+    button, a {
+      transition: all 0.2s;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <h1>giparstore</h1>
+      <span>▸ nokos asli & terpercaya</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Beranda</a>
+      <a href="#produk">Produk</a>
+      <a href="#" id="contactNav">Kontak</a>
+      <a href="https://wa.me/62895326378456?text=Halo%20GiparStore%2C%20saya%20butuh%20info%20Nokos" target="_blank" class="btn-wa-float"><i class="fab fa-whatsapp"></i> CS 24/7</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i class="fas fa-store" style="color: #e67e22;"></i> <span>GiparStore Official</span>
+      </div>
+      <h2>Nokos <span class="highlight">Berkualitas</span><br>Beli Langsung Otomatis</h2>
+      <p>Via WhatsApp + sistem order instan. Dapatkan Nokos premium, original, ready stock. Proses cepat & aman.</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="#produk" style="background: #e67e22; color: white; padding: 12px 28px; border-radius: 40px; text-decoration: none; font-weight: 700;"><i class="fas fa-shopping-bag"></i> Beli Sekarang</a>
+        <a href="https://wa.me/62895326378456?text=Halo%20saya%20mau%20konsultasi%20nokos" target="_blank" style="background: white; color: #25D366; padding: 12px 28px; border-radius: 40px; text-decoration: none; font-weight: 700; border:1px solid #25D366;"><i class="fab fa-whatsapp"></i> Chat WA</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <i class="fas fa-box-open"></i>
+    </div>
+  </div>
+</section>
+
+<div class="container" id="produk">
+  <h2 class="section-title">✨ Koleksi Nokos Gipar</h2>
+  <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- Modal Order Otomatis -->
+<div id="orderModal" class="modal">
+  <div class="modal-card">
+    <h3><i class="fas fa-shopping-cart"></i> Pesan Otomatis</h3>
+    <p class="modal-product-name" id="modalProductName">Nokos Original</p>
+    <form id="quickOrderForm">
+      <input type="text" id="customerName" placeholder="Nama lengkap" required>
+      <input type="tel" id="customerPhone" placeholder="Nomor WhatsApp Aktif" required>
+      <textarea id="customerAddress" rows="2" placeholder="Alamat lengkap (opsional, percepat proses)"></textarea>
+      <textarea id="orderNote" rows="2" placeholder="Catatan tambahan (warna/ukuran/variant jika ada)"></textarea>
+      <input type="hidden" id="productIdForOrder" value="">
+      <input type="hidden" id="productPriceForOrder" value="">
+      <div class="modal-buttons">
+        <button type="button" class="close-modal" id="closeModalBtn">Batal</button>
+        <button type="submit" class="submit-order"><i class="fab fa-whatsapp"></i> Kirim & Order via WA</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-content">
+    <div>
+      <h3 style="color: white;">GiparStore</h3>
+      <p style="margin-top: 8px;">Pusat Nokos asli & bergaransi<br>Melayani seluruh Indonesia</p>
+    </div>
+    <div>
+      <h4>Hubungi Kami</h4>
+      <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/62895326378456" target="_blank" class="whatsapp-link">+62 812-3456-7890</a></p>
+      <p><i class="fas fa-envelope"></i> giparstore@nokos.id</p>
+    </div>
+    <div>
+      <h4>Metode Pembayaran</h4>
+      <p>💳 Transfer Bank <br> 📱 QRIS / Dana / Ovo</p>
+      <small>Pembayaran diinformasikan via WhatsApp setelah order</small>
+    </div>
+  </div>
+  <div class="container" style="text-align: center; margin-top: 32px; font-size: 0.8rem;">
+    © 2025 GiparStore • Jual Nokos Otomatis via WhatsApp
+  </div>
+</footer>
+
+<script>
+  // Data produk nokos (contoh produk)
+  const products = [
+    {
+      id: 1,
+      name: "Nokos Classic Original",
+      description: "Motif khas Nusantara, bahan premium, nyaman dipakai sehari-hari.",
+      price: 125000,
+      priceText: "Rp 125.000",
+      icon: "fa-bag-shopping"
+    },
+    {
+      id: 2,
+      name: "Nokos Deluxe Edition",
+      description: "Edisi terbatas dengan detail anyaman eksklusif + tali kulit.",
+      price: 199000,
+      priceText: "Rp 199.000",
+      icon: "fa-crown"
+    },
+    {
+      id: 3,
+      name: "Nokos Mini Sling",
+      description: "Ukuran compact, cocok untuk daily use & traveling ringan.",
+      price: 89000,
+      priceText: "Rp 89.000",
+      icon: "fa-bag-shopping"
+    },
+    {
+      id: 4,
+      name: "Nokos Tas Serbaguna",
+      description: "Besar, multifungsi, bisa untuk laptop dan belanja.",
+      price: 275000,
+      priceText: "Rp 275.000",
+      icon: "fa-backpack"
+    }
+  ];
+
+  // render produk ke grid
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    products.forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-img">
+          <i class="fas ${prod.icon}"></i>
+        </div>
+        <div class="product-info">
+          <div class="product-title">${prod.name}</div>
+          <div class="product-desc">${prod.description}</div>
+          <div class="price">${prod.priceText} <small>/pcs</small></div>
+          <div class="btn-group">
+            <button class="btn-wa" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.priceText}" data-rawprice="${prod.price}"><i class="fab fa-whatsapp"></i> Beli via WA</button>
+            <button class="btn-order" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.priceText}" data-rawprice="${prod.price}"><i class="fas fa-bolt"></i> Beli Langsung</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // attach event listeners setelah render
+    document.querySelectorAll('.btn-wa').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const name = btn.getAttribute('data-name');
+        const price = btn.getAttribute('data-price');
+        const rawPrice = btn.getAttribute('data-rawprice');
+        directWhatsAppOrder(name, price);
+      });
+    });
+    document.querySelectorAll('.btn-order').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = btn.getAttribute('data-id');
+        const name = btn.getAttribute('data-name');
+        const priceText = btn.getAttribute('data-price');
+        const rawPrice = btn.getAttribute('data-rawprice');
+        openOrderModal(name, priceText, rawPrice, id);
+      });
+    });
+  }
+
+  // Fungsi beli via WA langsung (tanpa modal) cepat
+  function directWhatsAppOrder(productName, productPrice) {
+    const phoneNumber = "6281234567890"; // nomor WA bisnis (ganti dengan nomor asli)
+    const message = `Halo GiparStore!%0A%0ASaya ingin *MEMBELI LANGSUNG* produk:%0A📦 ${productName}%0A💰 Harga: ${productPrice}%0A%0ASaya siap melakukan pembayaran. Mohon info total dan metode pembayaran. Terima kasih!%0A%0A(Order otomatis dari web giparstore)`;
+    const waLink = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(waLink, '_blank');
+  }
+
+  // modal dan data produk terpilih
+  let selectedProduct = {
+    id: null,
+    name: '',
+    priceRaw: 0,
+    priceText: ''
+  };
+
+  const modal = document.getElementById('orderModal');
+  const modalProductNameSpan = document.getElementById('modalProductName');
+  const productIdForOrder = document.getElementById('productIdForOrder');
+  const productPriceForOrder = document.getElementById('productPriceForOrder');
+  const formOrder = document.getElementById('quickOrderForm');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  function openOrderModal(name, priceText, rawPrice, id) {
+    selectedProduct = {
+      id: id,
+      name: name,
+      priceRaw: parseInt(rawPrice) || 0,
+      priceText: priceText
+    };
+    modalProductNameSpan.innerText = name + " - " + priceText;
+    productIdForOrder.value = id;
+    productPriceForOrder.value = rawPrice;
+    // reset form fields (optional)
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('customerAddress').value = '';
+    document.getElementById('orderNote').value = '';
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  // submit order via WA dengan data lengkap (otomatis)
+  function submitOrderToWA(event) {
+    event.preventDefault();
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerPhone = document.getElementById('customerPhone').value.trim();
+    const customerAddress = document.getElementById('customerAddress').value.trim();
+    const orderNote = document.getElementById('orderNote').value.trim();
+    const productName = selectedProduct.name;
+    const productPrice = selectedProduct.priceText;
+    const productRaw = selectedProduct.priceRaw;
+
+    if (!customerName || !customerPhone) {
+      alert("Harap isi Nama dan Nomor WhatsApp terlebih dahulu!");
+      return;
+    }
+
+    // validasi nomor hp minimal 10 digit
+    if (customerPhone.length < 9) {
+      alert("Nomor WhatsApp tidak valid, masukkan dengan kode area (contoh: 81234567890)");
+      return;
+    }
+
+    // nomor tujuan bisnis (ganti dengan nomor asli penjual)
+    const merchantWA = "6281234567890";
+    
+    // membuat pesan order detail
+    let message = `*🛍️ ORDER OTOMATIS - GIPARSTORE*%0A`;
+    message += `%0A┌─────────────────%0A`;
+    message += `│ *Produk:* ${productName}%0A`;
+    message += `│ *Harga:* ${productPrice}%0A`;
+    message += `├─────────────────%0A`;
+    message += `│ *Data Pemesan*%0A`;
+    message += `│ Nama : ${customerName}%0A`;
+    message += `│ No WA : ${customerPhone}%0A`;
+    if (customerAddress) message += `│ Alamat : ${customerAddress}%0A`;
+    if (orderNote) message += `│ Catatan : ${orderNote}%0A`;
+    message += `└─────────────────%0A`;
+    message += `%0A*⏩ Tindakan selanjutnya: silakan konfirmasi stok dan total pembayaran + ongkir.*%0A`;
+    message += `Terima kasih! 🙏%0A(Order via web GiparStore)`;
+    
+    // encodeURIComponent
+    const encodedMsg = encodeURIComponent(message);
+    const waLink = `https://wa.me/${merchantWA}?text=${encodedMsg}`;
+    window.open(waLink, '_blank');
+    closeModal();
+    // optional beri notifikasi
+    setTimeout(() => {
+      alert("Pesanan telah dikirim ke WhatsApp Admin. Tunggu konfirmasi ya!");
+    }, 500);
+  }
+
+  // event listener modal & form
+  closeModalBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  formOrder.addEventListener('submit', submitOrderToWA);
+
+  // untuk tombol kontak di navbar smooth + scroll
+  const contactNav = document.getElementById('contactNav');
+  if(contactNav) {
+    contactNav.addEventListener('click', (e) => {
+      e.preventDefault();
+      const footer = document.querySelector('.footer');
+      footer.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // init render produk
+  renderProducts();
+
+  // tambahkan juga tombol order otomatis dari hero? sudah ada link WA
+  // dan juga dari product card sudah lengkap.
+  console.log("GiparStore siap! Nokos Jualan via WhatsApp + Order Otomatis");
+</script>
+</body>
+</html>
